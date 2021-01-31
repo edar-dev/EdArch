@@ -17,15 +17,22 @@ PKGS=(
         'xorg-server'           # XOrg server
         'xorg-apps'             # XOrg apps group
         'xorg-xinit'            # XOrg init
-        'xf86-video-intel'      # 2D/3D video driver
-        'mesa'                  # Open source version of OpenGL
-        'xf86-input-libinput'   # Trackpad driver for Dell XPS
+        #'xf86-video-intel'      # 2D/3D video driver intel
+        #'xf86-video-nouveau'    # 2D/3D video driver nvidia open
+        #'nvidia'                # 2D/3D video driver nvidia non free linux kernel
+        #'nvidia-lts'                # 2D/3D video driver nvidia non free linux-lts kernel
+        #'nvidia-beta'                # 2D/3D video driver nvidia beta version
+        'mesa'                  # Open source version of OpenGL        
 )
 
 for PKG in "${PKGS[@]}"; do
     echo "INSTALLING: ${PKG}"
     sudo pacman -S "$PKG" --noconfirm --needed
 done
+
+echo "Post install script!"
+
+cp /etc/X11/xinit/xinitrc ~/.xinitrc 
 
 echo
 echo "Done!"
