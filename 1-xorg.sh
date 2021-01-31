@@ -32,7 +32,22 @@ done
 
 echo "Post install script!"
 
-cp /etc/X11/xinit/xinitrc ~/.xinitrc 
+echo "Copy .xinitrc template file to root"
+TEMPLATE_FILE=/etc/X11/xinit/xinitrc
+FILE=~/.xinitrc
+
+if [ -f "$FILE" ]; then
+    echo "$FILE already exists!"
+else 
+    if [ -f "$TEMPLATE_FILE" ]; then
+        echo "$TEMPLATE_FILE does not exist! Did you install xorg-init package?"
+    else 
+        cp /etc/X11/xinit/xinitrc ~/.xinitrc 
+        echo "$FILE created based on $TEMPLATE_FILE"
+    fi
+fi
+
+
 
 echo
 echo "Done!"
